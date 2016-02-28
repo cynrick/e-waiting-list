@@ -5,9 +5,9 @@
     .module('app.auth')
     .controller('AuthController', AuthController);
 
-  AuthController.$inject = ['$firebaseAuth'];
+  AuthController.$inject = ['$location', '$firebaseAuth'];
 
-  function AuthController($firebaseAuth) {
+  function AuthController($location, $firebaseAuth) {
     var vm = this;
 
     var firebaseReference = new Firebase('https://e-waiting-list.firebaseio.com/');
@@ -20,6 +20,7 @@
 
     vm.register = register;
     vm.login = login;
+    vm.logout = logout;
 
     function register(user) {
       return firebaseAuthObject.$createUser(user)
@@ -39,6 +40,11 @@
         .catch(function(error) {
           console.log(error);
         });
+    }
+
+    function logout() {
+      firebaseAuthObject.$unauth();
+      $location.path('/');
     }
   }
 
