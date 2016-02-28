@@ -11,10 +11,13 @@
     var vm = this;
 
     var fireParties = new Firebase('https://e-waiting-list.firebaseio.com/parties');
+    var fireTextMessages = new Firebase('https://e-waiting-list.firebaseio.com/textMessages');
 
     vm.parties = $firebaseArray(fireParties);
     vm.newParty = new Party();
     vm.addParty = addParty;
+    vm.removeParty = removeParty;
+    vm.sendTextMessage = sendTextMessage;
 
     function Party() {
       this.name = '';
@@ -27,6 +30,22 @@
     function addParty() {
       vm.parties.$add(vm.newParty);
       vm.newParty = new Party();
+    }
+
+    function removeParty(party) {
+      vm.parties.$remove(party);
+    }
+
+    function sendTextMessage(party) {
+      var newTextMessage = {
+        name: party.name,
+        phoneNumber: party.phone,
+        size: party.size
+      };
+
+      fireTextMessages.push(newTextMessage);
+      party.notified = true;
+      vm.parties.$save(party);
     }
   }
 
