@@ -5,12 +5,12 @@
     .module('app.auth')
     .controller('AuthController', AuthController);
 
-  AuthController.$inject = ['$location', '$firebaseAuth'];
+  AuthController.$inject = ['$location', '$firebaseAuth', 'FIREBASE_URL'];
 
-  function AuthController($location, $firebaseAuth) {
+  function AuthController($location, $firebaseAuth, FIREBASE_URL) {
     var vm = this;
 
-    var firebaseReference = new Firebase('https://e-waiting-list.firebaseio.com/');
+    var firebaseReference = new Firebase(FIREBASE_URL);
     var firebaseAuthObject = $firebaseAuth(firebaseReference);
 
     vm.user = {
