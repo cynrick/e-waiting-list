@@ -18,7 +18,7 @@
     vm.register = register;
     vm.login = login;
     vm.logout = logout;
-    vm.loggedIn = authService.loggedIn;
+    vm.isLoggedIn = authService.isLoggedIn;
 
     function register(user) {
       return authService.register(user)
@@ -34,6 +34,7 @@
       return authService.login(user)
         .then(function(loggedInUser) {
           console.log(loggedInUser);
+          $location.path('/waitlist');
         })
         .catch(function(error) {
           console.log(error);
