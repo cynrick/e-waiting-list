@@ -4,7 +4,7 @@
   <!--server authentication error message-->
   <p ng-show="vm.error" class="text-danger" ng-bind="vm.error"></p>
 
-  <input ng-model="vm.user.email" name="email" type="email" class="form-control" placeholder="Email Address" required autofocus />
+  <input ng-model="vm.user.email" ng-model-options="{updateOn: 'default blur', debounce: {'default': 1000, 'blur': 0}}" name="email" type="email" class="form-control" placeholder="Email Address" required autofocus />
 
   <!--email error message-->
   <div ng-show="authForm.$submitted">
@@ -15,6 +15,7 @@
 
   <input ng-model="vm.user.password" name="password" type="password" class="form-control" placeholder="Password" required />
 
+  <!--password error message-->
   <div ng-show="authForm.$submitted">
     <p ng-show="authForm.password.$error.required" class="text-danger">Password required.</p>
   </div>
