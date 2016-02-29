@@ -11,16 +11,9 @@
     var vm = this;
 
     vm.parties = partyService.getPartiesByUser(user.uid);
-    vm.newParty = new partyService.Party();
-    vm.addParty = addParty;
     vm.removeParty = removeParty;
     vm.toggleDone = toggleDone;
     vm.sendTextMessage = sendTextMessage;
-
-    function addParty() {
-      vm.parties.$add(vm.newParty);
-      vm.newParty = new partyService.Party();
-    }
 
     function removeParty(party) {
       vm.parties.$remove(party);
