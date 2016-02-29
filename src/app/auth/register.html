@@ -1,15 +1,23 @@
-<form ng-submit="vm.register(vm.user)" class="form-signin">
+<form ng-submit="vm.register(vm.user)" name="authForm" class="form-signin" novalidate>
   <h2 class="form-signin-heading text-center">Sign up</h2>
 
   <!--server authentication error message-->
   <p ng-show="vm.error" class="text-danger" ng-bind="vm.error"></p>
 
   <br />
-  <input ng-model="vm.user.email" type="email" class="form-control" placeholder="Email Address" required autofocus />
+
+  <input ng-model="vm.user.email" name="email" type="email" class="form-control" placeholder="Email Address" required autofocus />
+
+  <div ng-show="authForm.$submitted">
+    <p ng-show="authForm.email.$error.required" class="text-danger">Email required.</p>
+    <p ng-show="authForm.email.$error.email" class="text-danger">Please enter a valid email.</p>
+  </div>
 
   <br />
+
   <input ng-model="vm.user.password" type="password" class="form-control" placeholder="Password" required />
 
   <br />
+
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
 </form>
