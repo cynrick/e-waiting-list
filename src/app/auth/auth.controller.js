@@ -10,11 +10,6 @@
   function AuthController($location, authService) {
     var vm = this;
 
-    vm.user = {
-      email: '',
-      password: ''
-    };
-
     vm.error = null;
     vm.register = register;
     vm.login = login;
@@ -35,7 +30,6 @@
     function login(user) {
       return authService.login(user)
         .then(function(loggedInUser) {
-          console.log(loggedInUser);
           $location.path('/waitlist');
         })
         .catch(function(error) {
