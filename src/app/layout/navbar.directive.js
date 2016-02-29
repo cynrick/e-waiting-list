@@ -9,6 +9,7 @@
     return {
       templateUrl: 'app/layout/navbar.html',
       restrict: 'E',
+      scope: {},
       controller: NavbarController,
       controllerAs: 'vm'
     };
