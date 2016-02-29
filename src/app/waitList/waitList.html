@@ -26,7 +26,7 @@
         <input ng-model="party.done" ng-change="vm.toggleDone(party)" type="checkbox" />
       </td>
       <td>
-        <div><strong>{{ party.name }} ({{ party.size }} people)</strong></div>
+        <div><strong>{{ party.name }} ({{ party.size }} {{ party.size > 1 ? "people" : "person" }})</strong></div>
         <div>{{ party.phone }}</div>
       </td>
       <td>
